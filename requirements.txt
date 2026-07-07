@@ -1,0 +1,8 @@
+gradio
+python-dotenv
+openai
+openai-agents
+requests
+pydantic
+mcp
+massive
