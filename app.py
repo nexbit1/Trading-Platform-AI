@@ -14,4 +14,5 @@ if __name__ == "__main__":
         css=css,
         js=js,
         inbrowser=True,
+        share=True,
     )

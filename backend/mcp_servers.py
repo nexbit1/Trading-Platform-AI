@@ -48,11 +48,13 @@ def researcher_mcp_servers(name: str) -> list[MCPServerStdio]:
         client_session_timeout_seconds=TIMEOUT,
         tool_filter=create_static_tool_filter(allowed_tool_names=["tavily_search"]),
     )
+    memory_dir = Path(PROJECT_DIR) / "memory"
+    memory_dir.mkdir(parents=True, exist_ok=True)
     memory = MCPServerStdio(
         {
             "command": "npx",
             "args": ["-y", "mcp-memory-libsql"],
-            "env": {"LIBSQL_URL": f"file:./memory/{name}.db"},
+            "env": {"LIBSQL_URL": f"file:{memory_dir}/{name}.db"},
         },
         client_session_timeout_seconds=TIMEOUT,
     )
