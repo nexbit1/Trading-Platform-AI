@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
+const API_BASE = import.meta.env.VITE_API_URL || "";
+
 const money = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
@@ -15,7 +17,7 @@ const number = new Intl.NumberFormat("en-US", {
 const traderAccents = ["#00b8d9", "#25c06d", "#f2b84b", "#e2557c"];
 
 async function fetchJson(path) {
-  const response = await fetch(path);
+  const response = await fetch(`${API_BASE}${path}`);
   if (!response.ok) {
     throw new Error(`${response.status} ${response.statusText}`);
   }
