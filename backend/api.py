@@ -10,6 +10,7 @@ Run it from the 6_mcp directory so it shares the engine's accounts.db:
 """
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
 from backend import market
 from backend.accounts import Account
@@ -34,6 +35,18 @@ roster = [
 roster_by_name = {trader["name"].lower(): trader for trader in roster}
 
 app = FastAPI(title="Trading Floor")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "https://your-app.vercel.app",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 def average_cost(account: Account, symbol: str) -> float:

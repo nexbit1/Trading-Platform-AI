@@ -1,3 +1,10 @@
 venv
 .env
+.env.development
+.env.production
+
+
+
+
 accounts.db
+
